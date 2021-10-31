@@ -1,30 +1,36 @@
-import * as React from 'react';
-import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList ,  TouchableOpacity, Component} from 'react-native';
+import React, {useState, Component} from 'react';
+import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList ,  TouchableOpacity, Alert} from 'react-native';
+
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-
-
 function TidyCard(props) {
-    const {name, image, desc} = props.data;
- 
-    return (
-    
-    <View style={styles.containerForCard}>
+  const {name, image, desc} = props.data;
+  const [pressedValue, setPressedValue] = useState(false);
+  return (
+    <TouchableOpacity onPress = { () =>
+      setPressedValue(true)
+     }>
+    <View style={pressedValue == true ? styles.pressedContainer: styles.containerForCard}>
+       
+  
     <ImageBackground  
-    style = {styles.image}
-    source = {{ uri: image}}>
+    style = {pressedValue == true ? styles.newImage: styles.image}
+    source = {{ uri: image.source}}>
     <View style = {styles.innerTidyCard}>
       <Text style = {styles.name}>{name}</Text>
       <Text style = {styles.desc}>{desc}</Text>
       </View>
    </ImageBackground>
+ 
    </View>
+   </TouchableOpacity>
   
   
-    )
+  )
 }
+
 
 
 const styles = StyleSheet.create({
@@ -46,7 +52,6 @@ const styles = StyleSheet.create({
 },
 shadowOpacity: 0.37,
 shadowRadius: 7.49,
-
 elevation: 12,
     },
     innerTidyCard: {
@@ -67,8 +72,8 @@ elevation: 12,
           lineHeight:25,
         },
         pressedContainer: {
-          width: '95%',
-          height: '70%',
+          width: screenWidth-20,
+          height: screenHeight-30,
           borderRadius:10,
           shadowColor: "#000",
           shadowOffset: {
@@ -81,11 +86,12 @@ elevation: 12,
           
         },
         newImage: {
-     width:'90%', 
-    height:'90%',
+     height:screenHeight+10,
+     width:screenWidth+10,
     borderRadius:10,
     overflow:'hidden',
     justifyContent: 'flex-end',
+    
         }
    
     })
