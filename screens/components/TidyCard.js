@@ -1,33 +1,50 @@
 import React, {useState, Component} from 'react';
-import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList ,  TouchableOpacity, Alert} from 'react-native';
-
+import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList,  TouchableOpacity} from 'react-native';
+import Data from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Data.js';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 function TidyCard(props) {
-  const {name, image, desc} = props.data;
+ 
   const [pressedValue, setPressedValue] = useState(false);
   return (
-    <TouchableOpacity onPress = { () =>
+  <View>
+  {Data.map((item, index) => {
+  return (
+   
+    <TouchableOpacity  
+     key = {item.id}
+
+      onPress = { () =>
+     
       setPressedValue(true)
-     }>
+     
+     } >
+    
     <View style={pressedValue == true ? styles.pressedContainer: styles.containerForCard}>
        
   
-    <ImageBackground  
-    style = {pressedValue == true ? styles.newImage: styles.image}
-    source = {{ uri: image.source}}>
+    <ImageBackground
+    style = {pressedValue==true ? styles.newImage: styles.image}
+    key = {index}
+    source = {{ uri: item.image}}>
     <View style = {styles.innerTidyCard}>
-      <Text style = {styles.name}>{name}</Text>
-      <Text style = {styles.desc}>{desc}</Text>
+      <Text style = {styles.name}>{item.name}</Text>
+      <Text style = {styles.desc}>{item.desc}</Text>
       </View>
    </ImageBackground>
  
    </View>
    </TouchableOpacity>
+     
+    
+    
+    
   
-  
+  )
+    })}
+    </View>
   )
 }
 
