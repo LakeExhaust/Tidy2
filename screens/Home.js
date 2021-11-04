@@ -4,7 +4,7 @@ import { Text, View, FlatList, TouchableOpacity, AccessibilityInfo, Alert, Scrol
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TidyCard from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/TidyCard.js';
 import Data from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Data.js';
-
+import showPost from '/Users/lake/Desktop/MobileDev/Tidy2/screens/showPost.js'
 
 const HomeStack = createNativeStackNavigator();
 
@@ -25,6 +25,8 @@ function HomeStackScreen() {
      
       <HomeStack.Navigator>
         <HomeStack.Screen name="Home" component={HomeScreen}/>
+        <HomeStack.Screen name="showPost" component={showPost} />
+         
         
       </HomeStack.Navigator>
       

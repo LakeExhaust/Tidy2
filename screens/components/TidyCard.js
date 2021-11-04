@@ -1,33 +1,39 @@
-import React, {useState, Component} from 'react';
-import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList,  TouchableOpacity} from 'react-native';
+import React, {useState } from 'react';
+import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList,  TouchableOpacity, Alert} from 'react-native';
 import Data from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Data.js';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation, useRoute } from '@react-navigation/native';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-function TidyCard(props) {
- 
+const TidyCard = () =>  {
+  const navigation = useNavigation();
   const [pressedValue, setPressedValue] = useState(false);
+  const [image, setImage] = useState(null);
+ 
   return (
   <View>
   {Data.map((item, index) => {
+    
   return (
    
     <TouchableOpacity  
-     key = {item.id}
-
+   
       onPress = { () =>
+ 
+     navigation.navigate('showPost', {item: {name: item.name, image: item.image, desc: item.desc}})
      
-      setPressedValue(true)
-     
+
      } >
     
     <View style={pressedValue == true ? styles.pressedContainer: styles.containerForCard}>
        
   
     <ImageBackground
+      key = {item.id}
     style = {pressedValue==true ? styles.newImage: styles.image}
-    key = {index}
+    
     source = {{ uri: item.image}}>
     <View style = {styles.innerTidyCard}>
       <Text style = {styles.name}>{item.name}</Text>
@@ -48,7 +54,14 @@ function TidyCard(props) {
   )
 }
 
+const ShowPost = () => {
 
+  const route = useRoute()
+  return (
+
+  <Text>{route.params.item.name}</Text> 
+  )
+}
 
 const styles = StyleSheet.create({
  image: {
@@ -113,4 +126,5 @@ elevation: 12,
    
     })
 
-export default TidyCard;
+export default TidyCard
+
