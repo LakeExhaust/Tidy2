@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList,  TouchableOpacity, Alert} from 'react-native';
+import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList,  TouchableOpacity, Alert, Button} from 'react-native';
 import Data from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Data.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -9,8 +9,7 @@ const screenHeight = Dimensions.get('window').height;
 
 const TidyCard = () =>  {
   const navigation = useNavigation();
-  const [pressedValue, setPressedValue] = useState(false);
-  const [image, setImage] = useState(null);
+
  
   return (
   <View>
@@ -27,12 +26,12 @@ const TidyCard = () =>  {
 
      } >
     
-    <View style={pressedValue == true ? styles.pressedContainer: styles.containerForCard}>
+    <View style={ styles.containerForCard}>
        
   
     <ImageBackground
       key = {item.id}
-    style = {pressedValue==true ? styles.newImage: styles.image}
+    style = {styles.image}
     
     source = {{ uri: item.image}}>
     <View style = {styles.innerTidyCard}>
@@ -40,7 +39,7 @@ const TidyCard = () =>  {
       <Text style = {styles.desc}>{item.desc}</Text>
       </View>
    </ImageBackground>
- 
+  
    </View>
    </TouchableOpacity>
      

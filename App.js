@@ -9,7 +9,6 @@ import Post from './screens/Post';
 
 
 
-
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -22,8 +21,11 @@ export default function App() {
      
       <Tab.Screen name="Home" component={Home} options={{
           headerShown: false}} />
-      <Tab.Screen name="Post" component={Post} options={{
+            <Tab.Screen name="Post" component={Post} options={{
           headerShown: false}} />
+ 
+      
+     
       
     </Tab.Navigator>
     </NavigationContainer>

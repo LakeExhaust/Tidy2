@@ -1,40 +1,54 @@
-import React, {useEffect, useState} from 'react'
-import { Text, View, FlatList, TouchableOpacity, AccessibilityInfo, Alert, ScrollView, ImageBackground, StyleSheet, Dimensions} from 'react-native';
+import React, {useState} from 'react'
+import { Text, View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity, Button} from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
+import heart from '/Users/lake/Desktop/MobileDev/Tidy2/assets/icons/baseline_favorite_border_black_24dp.png'
 const showPostStack = createNativeStackNavigator();
-
-const ShowPost = () => {
+const showPost = () => {
 
   const route = useRoute()
-  const name = route.params.name;
-  const desc = route.params.desc;
-  const image = route.params.image;
+  const name = route.params.item.name;
+  const desc = route.params.item.desc;
+  const image = route.params.item.image;
+  const [isPressed, setPressed] = useState(false);
+  const navigation = useNavigation();
   return (
 
-<View>
-       
+<View style = {styles.pressedContainer}>
   
+<Button style = {styles.backButton} onPress={() => navigation.goBack()} title="Back" />
+
        <ImageBackground
         
        style = {styles.newImage}
        
        source = {{ uri:image }}>
-       <View style = {styles.innerTidyCard}>
+        
          <Text style = {styles.name}>{name}</Text>
          <Text style = {styles.desc}>{desc}</Text>
-         </View>
+         <TouchableOpacity  
+   
+   onPress = { () =>
+   setPressed(true)
+   
+  } >
+          <Image
+          style = {isPressed == true ? styles.redheart : styles.heart}
+          source={heart}>
+         </Image>
+       </TouchableOpacity>
       </ImageBackground>
+      
       </View>
   )
 }
 
 
 
-export default ShowPost;
+export default showPost;
 
 const styles = StyleSheet.create({
   pressedContainer: {
@@ -51,15 +65,25 @@ const styles = StyleSheet.create({
     elevation: 11,
     
   },
+  
+  newImage: {
+height:screenHeight,
+width:screenWidth,
+borderRadius:10,
+justifyContent: 'flex-start',
+resizeMode:'cover'
+
+  },
   innerTidyCard: {
     padding: 10,
     
     }, 
     
     name : {
-    fontSize: 30,
+    fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
+    
     
     }, 
     
@@ -68,12 +92,37 @@ const styles = StyleSheet.create({
       color: 'white',
       lineHeight:25,
     },
-  newImage: {
-height:screenHeight+10,
-width:screenWidth+10,
-borderRadius:10,
-overflow:'hidden',
-justifyContent: 'flex-end',
-
-  }
+    heart: {
+      resizeMode:'contain',
+      width:50,
+      height:50,
+      position:'absolute',
+      justifyContent:'center',
+      alignItems:'center',
+      margin:50,
+      right:5,
+      bottom:15,
+     
+     
+    },
+    redheart: {
+      resizeMode:'contain',
+      width:50,
+      height:50,
+      position:'absolute',
+      justifyContent:'center',
+      alignItems:'center',
+      margin:50,
+      right:5,
+      bottom:15,
+      color:'red'
+     
+     
+    },
+    backButton: {
+      width: '20%',
+      height: '25%',
+      left:1,
+      color:'red'
+    }
 })
