@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '/Users/lake/Desktop/MobileDev/Tidy2/screens/Home.js';
 import Post from './screens/Post';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import ControlUI from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/ControlUI.js'
 
 
 
@@ -20,12 +21,24 @@ export default function App() {
     <Tab.Navigator>
      
       <Tab.Screen name="Home" component={Home} options={{
-          headerShown: false}} />
+          headerShown: false,  tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          )
+      }}
+      />
             <Tab.Screen name="Post" component={Post} options={{
-          headerShown: false}} />
- 
+          headerShown: false, tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="plus" color={color} size={size} />
+          )
+            }}
+            />
       
-     
+      <Tab.Screen name="ControlUI" component={ControlUI} options={{
+          headerShown: false, tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="plus" color={color} size={size} />
+          )
+            }}
+            />
       
     </Tab.Navigator>
     </NavigationContainer>

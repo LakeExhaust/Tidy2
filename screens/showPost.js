@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
-import { Text, View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity, Button} from 'react-native';
+import { Text, View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity, Button, ScrollView, TextInput} from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
 import heart from '/Users/lake/Desktop/MobileDev/Tidy2/assets/icons/baseline_favorite_border_black_24dp.png'
-const showPostStack = createNativeStackNavigator();
-const showPost = () => {
+import Comment from '/Users/lake/Desktop/MobileDev/Tidy2/screens/Comment.js';
+import ControlUI from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/ControlUI.js';
 
+
+const showPostStack = createNativeStackNavigator();
+
+const showPost = () => {
+  const [text, setText] = useState();
   const route = useRoute()
   const name = route.params.item.name;
   const desc = route.params.item.desc;
@@ -20,7 +25,7 @@ const showPost = () => {
 <View style = {styles.pressedContainer}>
   
 <Button style = {styles.backButton} onPress={() => navigation.goBack()} title="Back" />
-
+<ScrollView>
        <ImageBackground
         
        style = {styles.newImage}
@@ -35,13 +40,31 @@ const showPost = () => {
    setPressed(true)
    
   } >
-          <Image
-          style = {isPressed == true ? styles.redheart : styles.heart}
-          source={heart}>
-         </Image>
+         
+
+       
        </TouchableOpacity>
+       <ControlUI></ControlUI>
+    
       </ImageBackground>
-      
+      <Text style = {styles.title}>
+        Comments Section
+      </Text>
+      <TextInput style ={styles.input}
+      value={text}
+      onKeyPress={ (event) => {
+                if(event.nativeEvent.key == "Enter"){
+                  console.log('User hit enter')
+                  const data = {id:4, name:"Default", profilePic:require('/Users/lake/Desktop/MobileDev/Tidy2/assets/profilePics/defaultUser.jpeg'), comment:text};
+                  AsynchStorage.storeData(data)
+                  //  Comment.storeData({id:4, name:"Default", profilePic:require('/Users/lake/Desktop/MobileDev/Tidy2/assets/profilePics/defaultUser.jpeg'), comment:text});
+                   console.log(AsynchStorage.storeData(data))
+                  } 
+      }
+              }
+      />
+      <Comment></Comment>
+     </ScrollView>
       </View>
   )
 }
@@ -105,6 +128,12 @@ resizeMode:'cover'
      
      
     },
+    input: {
+      height: 40,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+    },
     redheart: {
       resizeMode:'contain',
       width:50,
@@ -124,5 +153,12 @@ resizeMode:'cover'
       height: '25%',
       left:1,
       color:'red'
-    }
+    },
+    title: {
+      fontSize: 25,
+      fontWeight: "bold",
+      left: 20,
+     
+
+    }, 
 })

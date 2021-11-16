@@ -3,6 +3,7 @@ import { Text, View, FlatList, TextInput, StyleSheet,  Pressable, Image, Dimensi
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import addImage from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/AddImage.js'
 import { useNavigation, useRoute } from '@react-navigation/native';
+import Data from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Data.js';
 
 const PostStack = createNativeStackNavigator();
 const screenWidth = Dimensions.get('window').width;
@@ -16,6 +17,7 @@ function Post() {
   const [descText, setDesc] = useState('');
   const [isLoading, setLoading] = useState('');
   const route = useRoute();
+
   const defaultImage = require('/Users/lake/Desktop/MobileDev/Tidy2/assets/farming.jpeg');
 
   useEffect(async () => {
@@ -52,9 +54,13 @@ function Post() {
      />
     <Pressable style = {styles.button}
     onPress={() => { 
-      const data = {title : text, descText, image:route.params.image};
-      navigation.navigate('Home', data);
-     
+      const data = {id: 4, name : text, image:route.params.image.uri, desc:descText};
+      //writeFile(data)
+      console.log( writeFile());
+      navigation.navigate('Home');
+  
+    
+    
 
      }} >
    <Text style = {styles.text}>Next</Text>

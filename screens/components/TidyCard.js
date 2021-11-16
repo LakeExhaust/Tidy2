@@ -38,7 +38,9 @@ const TidyCard = () =>  {
       <Text style = {styles.name}>{item.name}</Text>
       <Text style = {styles.desc}>{item.desc}</Text>
       </View>
+    
    </ImageBackground>
+
   
    </View>
    </TouchableOpacity>
