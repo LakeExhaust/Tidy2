@@ -50,19 +50,7 @@ const showPost = () => {
       <Text style = {styles.title}>
         Comments Section
       </Text>
-      <TextInput style ={styles.input}
-      value={text}
-      onKeyPress={ (event) => {
-                if(event.nativeEvent.key == "Enter"){
-                  console.log('User hit enter')
-                  const data = {id:4, name:"Default", profilePic:require('/Users/lake/Desktop/MobileDev/Tidy2/assets/profilePics/defaultUser.jpeg'), comment:text};
-                  AsynchStorage.storeData(data)
-                  //  Comment.storeData({id:4, name:"Default", profilePic:require('/Users/lake/Desktop/MobileDev/Tidy2/assets/profilePics/defaultUser.jpeg'), comment:text});
-                   console.log(AsynchStorage.storeData(data))
-                  } 
-      }
-              }
-      />
+     
       <Comment></Comment>
      </ScrollView>
       </View>

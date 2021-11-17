@@ -1,42 +1,25 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, Component } from 'react';
 import { TextInput, Text,View, Dimensions, StyleSheet, FlatList,  TouchableOpacity, Alert, Button, ScrollView, ImageBackground} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import Comments from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Comments.js'
+import {comments} from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Comments.js';
 
 
-export default function Comment() {
-  const data = {id:4, name:"Default", profilePic:require('/Users/lake/Desktop/MobileDev/Tidy2/assets/profilePics/defaultUser.jpeg'), comment:'Hey'};
-const comments = Comments;
+export default function Comment()  {
+  const [array, setArray] = useState(comments)
+  const [text, setText] = useState("")
+ 
+
+const addEntry = (data) => {
+  setArray(array.concat(data));
+}
 
 
-  //const [comment, setComment] = useState([]);
-  /*
-  useEffect(() => {
-    // storing input name
-    let cancel = false;
-    if(cancel)
-    setComment(localStorage.getItem("test"));
 
-  }, []);
-  */
-  /*
-  const [id,setId] = useState('');
-  const [name,setName] = useState('');
-  const [profilePic,setProfilePic] = useState('');
-  const [comment,setComment] = useState('');
-
-var commentBox = {
-  id:id,
-  name : name,
-  profilePic : profilePic,
-  comment : comment
-};
-*/
 
 return (
 <ScrollView>
 
-{comments.getData.map((item, index) => (
+{array.map((item, index) => (
    
       
     
@@ -45,9 +28,22 @@ return (
        <View>
        
     
-      
+       <TextInput style ={styles.input}
+      value = {text}
+      onChangeText={text => setText(text)}
+    
+      onKeyPress={ (event) => {
+                if(event.nativeEvent.key == "Enter"){
+                  console.log('User hit enter')
+                  const data = {id:4, name:"Default", profilePic:require('/Users/lake/Desktop/MobileDev/Tidy2/assets/profilePics/defaultUser.jpeg'), comment:text}
+                  addEntry(data)
+                  } 
+      }
+              }
+      />
 
       <View style = {styles.topContainer}>
+     
      
       <ImageBackground style = {styles.profilePic} source = {{ uri: item.profilePic}}>
       </ImageBackground>
@@ -71,7 +67,8 @@ return (
     ))}
   </ScrollView>
 );
-  }
+}
+
 
 
     
