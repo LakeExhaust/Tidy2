@@ -6,7 +6,7 @@ import {comments} from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/C
 
 export default function Comment()  {
   const [array, setArray] = useState(comments)
-  const [text, setText] = useState("")
+  const [text, setText] = useState('')
  
 
 const addEntry = (data) => {
@@ -18,17 +18,7 @@ const addEntry = (data) => {
 
 return (
 <ScrollView>
-
-{array.map((item, index) => (
-   
-      
-    
-  
-    
-       <View>
-       
-    
-       <TextInput style ={styles.input}
+<TextInput style ={styles.input}
       value = {text}
       onChangeText={text => setText(text)}
     
@@ -42,6 +32,16 @@ return (
               }
       />
 
+{array.map((item, index) => (
+   
+      
+    
+  
+    
+       <View>
+       
+    
+     
       <View style = {styles.topContainer}>
      
      
