@@ -10,10 +10,20 @@ export default function Comment()  {
  
 
 const addEntry = (data) => {
-  setArray(array.concat(data));
+  
+  setArray([...array, data]);
 }
 
+useEffect(() => {
+  const data = localStorage.getItem("array");
+  if (data) {
+    setArray(JSON.parse(data));
+  }
+}, []);
 
+ useEffect(() => {
+  localStorage.setItem("array", JSON.stringify(array));
+});
 
 
 return (

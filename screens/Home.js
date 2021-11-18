@@ -39,8 +39,7 @@ function HomeStackScreen() {
         <HomeStack.Screen name="Home" component={HomeScreen}/>
         <HomeStack.Screen name="showPost" component={showPost} options={{
           headerShown: false}} /> 
-            <HomeStack.Screen name="Comment" component={Comment} options={{
-          headerShown: false}} /> 
+        
            
               
       </HomeStack.Navigator>

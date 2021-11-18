@@ -116,12 +116,7 @@ resizeMode:'cover'
      
      
     },
-    input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-    },
+   
     redheart: {
       resizeMode:'contain',
       width:50,
