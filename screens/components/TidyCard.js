@@ -1,22 +1,29 @@
 import React, {useState } from 'react';
-import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList,  TouchableOpacity, Alert, Button} from 'react-native';
-import Data from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Data.js';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text, View, ImageBackground, Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import {getArray} from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Data.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
+//Here are the screen dimesions saved 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-const TidyCard = () =>  {
-  const navigation = useNavigation();
-
  
+
+   
+  
+ const TidyCard = ({array}) =>  {
+  //Instansiate navigation variable
+  const navigation = useNavigation();
+  
+   
+
+
+ //On return map our data and get the item to be displayed in the elements
   return (
   <View>
-  {Data.map((item, index) => {
+  {array.map((item, index) => {
     
   return (
-   
+   //if one of the posts gets pressed then navigate to the showPost screen and deliver the item data
     <TouchableOpacity  
    
       onPress = { () =>
@@ -27,7 +34,7 @@ const TidyCard = () =>  {
      } >
     
     <View style={ styles.containerForCard}>
-       
+  
   
     <ImageBackground
       key = {item.id}
@@ -55,14 +62,7 @@ const TidyCard = () =>  {
   )
 }
 
-const ShowPost = () => {
 
-  const route = useRoute()
-  return (
-
-  <Text>{route.params.item.name}</Text> 
-  )
-}
 
 const styles = StyleSheet.create({
  image: {
@@ -127,5 +127,6 @@ elevation: 12,
    
     })
 
-export default TidyCard
+   
 
+    export default TidyCard;

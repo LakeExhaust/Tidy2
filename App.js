@@ -8,7 +8,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ControlUI from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/ControlUI.js'
 
 
-
+/*
+The App.js class holds all the tabs for the app
+   
+*/
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,19 +29,10 @@ export default function App() {
           )
       }}
       />
-            <Tab.Screen name="Post" component={Post} options={{
-          headerShown: false, tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="plus" color={color} size={size} />
-          )
-            }}
-            />
+   
+
       
-      <Tab.Screen name="ControlUI" component={ControlUI} options={{
-          headerShown: false, tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="plus" color={color} size={size} />
-          )
-            }}
-            />
+     
       
     </Tab.Navigator>
     </NavigationContainer>

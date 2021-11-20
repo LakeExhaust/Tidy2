@@ -3,7 +3,14 @@ import { TextInput, Text,View, Dimensions, StyleSheet, FlatList,  TouchableOpaci
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {comments} from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/Comments.js';
 
-
+/*
+Displays the comment box
+Imports the comment file puts in a state variable
+Sets the text through textInput and saves in a state variable
+Data gets set and returned in localstorage
+New data gets written through the addEntry method
+array gets mapped on to elements 
+*/
 export default function Comment()  {
   const [array, setArray] = useState(comments)
   const [text, setText] = useState('')

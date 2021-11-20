@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, View, ImageBackground, Dimensions, StyleSheet, FlatList,  TouchableOpacity, Alert, Button, Pressable, Image} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {View, ImageBackground, StyleSheet, Pressable} from 'react-native';
+//Control UI holds the image for bookmark, share and heart. It gets exported to the showPost class
 export default function ControlUI() {
     const bookmark = require('/Users/lake/Desktop/MobileDev/Tidy2/assets/ControlUI/bookmark.png');
     const heart = require('/Users/lake/Desktop/MobileDev/Tidy2/assets/ControlUI/cards-heart.png');

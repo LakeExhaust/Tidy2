@@ -1,17 +1,20 @@
 import React, {useState} from 'react'
-import { Text, View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity, Button, ScrollView, TextInput} from 'react-native';
+import { Text, View, ImageBackground, StyleSheet, Dimensions, TouchableOpacity, Button, ScrollView} from 'react-native';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-import heart from '/Users/lake/Desktop/MobileDev/Tidy2/assets/icons/baseline_favorite_border_black_24dp.png'
 import Comment from '/Users/lake/Desktop/MobileDev/Tidy2/screens/Comment.js';
 import ControlUI from '/Users/lake/Desktop/MobileDev/Tidy2/screens/components/ControlUI.js';
 
 
 const showPostStack = createNativeStackNavigator();
-
+/*
+showPost shows the post in half fullscreen with the comments and control UI. It gets data from the compoent 
+and displays them in elements. On click on the go back button takes the user back to the homescreen. 
+Comment component is also imported to display all the comments
+*/
 const showPost = () => {
   const [text, setText] = useState();
   const route = useRoute()

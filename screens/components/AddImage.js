@@ -5,6 +5,11 @@ import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 /*
 Modified Expo documentation
+The main things that we declare setCamera and setImage state variables
+In the takeImage method a image gets taken
+pickImage the user picks a image
+these methods gets called on different buttons
+on confirm button it sends data to the Post class
 */
 export default function AddImage() {
   const [hasPermission, setHasPermission] = useState(null);
